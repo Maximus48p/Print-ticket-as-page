@@ -162,6 +162,9 @@ $t_show_reminder_link = !current_user_is_anonymous() && !bug_is_readonly( $f_bug
 	  access_has_bug_level( config_get( 'bug_reminder_threshold' ), $f_bug_id );
 $t_bug_reminder_link = 'bug_reminder_page.php?bug_id=' . $f_bug_id;
 
+# Print_bug_page_word 
+$t_print_bug_page = 'print_all_bug_page_word.php?&type_page=html&export=' . $f_bug_id . '&show_flag=1';
+
 $t_top_buttons_enabled = !$t_force_readonly && ( $t_action_button_position == POSITION_TOP || $t_action_button_position == POSITION_BOTH );
 $t_bottom_buttons_enabled = !$t_force_readonly && ( $t_action_button_position == POSITION_BOTTOM || $t_action_button_position == POSITION_BOTH );
 
@@ -290,6 +293,11 @@ echo '</div>';
 
 # prev/next links
 echo '<div class="btn-group pull-right">';
+
+# print_bug_page copied from version 1.16
+#$t_print_link = 'print_bug_page.php?bug_id=' . $f_bug_id;
+print_small_button( $t_print_bug_page, lang_get( 'print_bug_page' ) );
+
 if( $t_bugslist ) {
 	$t_bugslist = explode( ',', $t_bugslist );
 	$t_index = array_search( $f_bug_id, $t_bugslist );
